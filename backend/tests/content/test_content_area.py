@@ -72,5 +72,6 @@ class TestArea:
                 assert content.portal_type == CONTENT_TYPE
                 assert isinstance(content, Area)
             else:
-                with pytest.raises(Unauthorized):
+                with pytest.raises(Unauthorized) as exc:
                     api.content.create(container=self.portal, **area_payload)
+                assert "Cannot create Area" in str(exc)
