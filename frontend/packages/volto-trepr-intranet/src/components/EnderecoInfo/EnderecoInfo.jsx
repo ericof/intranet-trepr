@@ -17,8 +17,12 @@ const EnderecoInfo = ({ content }) => {
         </Container>
       )}
       <Container>
-        <span className="cidade">{cidade}</span> -{' '}
-        <span className="estado">{estado}</span>
+        <span className="cidade">{cidade}</span>
+        {estado && (
+          <>
+            - <span className="estado">{estado.token}</span>
+          </>
+        )}
       </Container>
       {cep && (
         <Container>
@@ -33,7 +37,10 @@ EnderecoInfo.propTypes = {
     endereco: PropTypes.string,
     complemento: PropTypes.string,
     cidade: PropTypes.string,
-    estado: PropTypes.string,
+    estado: PropTypes.shape({
+      token: PropTypes.string,
+      title: PropTypes.string,
+    }),
     cep: PropTypes.string,
   }).isRequired,
 };
