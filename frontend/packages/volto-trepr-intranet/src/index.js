@@ -1,11 +1,21 @@
 import Libras from '@plonegovbr/volto-vlibras/components/Libras';
 
+// Views
+import AreaView from './components/Views/AreaView';
+
 const applyConfig = (config) => {
   config.settings = {
     ...config.settings,
     isMultilingual: false,
     supportedLanguages: ['pt-br'],
     defaultLanguage: 'pt-br',
+    appExtras: [
+      ...config.settings.appExtras,
+      {
+        match: '',
+        component: Libras,
+      },
+    ],
     image_crop_aspect_ratios: [
       {
         label: '16:9',
@@ -21,13 +31,15 @@ const applyConfig = (config) => {
       },
     ],
   };
-  config.settings.appExtras = [
-    ...config.settings.appExtras,
-    {
-      match: '',
-      component: Libras,
-    },
-  ];
+
+  // Views
+  config.views.contentTypesViews = {
+    ...config.views.contentTypesViews,
+    Area: AreaView,
+  };
+
+  // Blocos
+  /// Altera bloco mapLibreBlock
   config.blocks.blocksConfig['mapLibreBlock']['tileLayers'] = [
     {
       id: 'osm',
