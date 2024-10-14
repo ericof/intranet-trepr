@@ -10,6 +10,10 @@
         id="trepr.intranet.area.add"
         title="trepr.intranet: Add Area"
         />
+    <permission
+        id="trepr.intranet.pessoa.add"
+        title="trepr.intranet: Add Pessoa"
+        />
 
   </configure>
 
