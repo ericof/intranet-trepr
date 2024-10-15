@@ -1,5 +1,8 @@
 import Libras from '@plonegovbr/volto-vlibras/components/Libras';
 
+// Blocks
+import AreaGridItem from './components/Blocks/Grid/AreaGridItem';
+
 // Views
 import AreaView from './components/Views/AreaView';
 import PessoaView from './components/Views/PessoaView';
@@ -41,6 +44,13 @@ const applyConfig = (config) => {
   };
 
   // Blocos
+  /// Grid
+  config.registerComponent({
+    name: 'GridListingItemTemplate',
+    component: AreaGridItem,
+    dependencies: 'Area',
+  });
+
   /// Altera bloco mapLibreBlock
   config.blocks.blocksConfig['mapLibreBlock']['tileLayers'] = [
     {
