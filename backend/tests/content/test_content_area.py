@@ -77,3 +77,22 @@ class TestArea:
                 with pytest.raises(Unauthorized) as exc:
                     api.content.create(container=self.portal, **area_payload)
                 assert "Cannot create Area" in str(exc)
+
+    def test_subscriber_added_with_description_value(self, area_payload):
+        container = self.portal
+        with api.env.adopt_roles(["Manager"]):
+            area = api.content.create(
+                container=container,
+                **area_payload,
+            )
+        assert area.exclude_from_nav is False
+
+    def test_subscriber_added_without_description_value(self, area_payload):
+        from copy import deepcopy
+
+        container = self.portal
+        with api.env.adopt_roles(["Manager"]):
+            payload = deepcopy(area_payload)
+            payload["description"] = ""
+            area = api.content.create(container=container, **payload)
+        assert area.exclude_from_nav is True
