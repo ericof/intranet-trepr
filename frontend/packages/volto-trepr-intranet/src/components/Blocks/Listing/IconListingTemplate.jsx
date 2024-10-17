@@ -38,7 +38,7 @@ const IconListingTemplate = ({
 
   return (
     <>
-      <Container className="items">
+      <Container className="items icon-items">
         {items.map((item) => {
           const iconName = getContentIcon(item.portal_type, true);
           return (
